@@ -3,7 +3,7 @@
 message: .asciiz "Input a string 30 characters or less: "
 message1: .asciiz "Input an integer greater than 0: "
 invalid: .asciiz "No input. Run again." 
-buffer: .space 30 
+buffer: .space 31
 
 .text 
 main:
@@ -13,7 +13,11 @@ main:
     	
     	li $v0, 8 #Set system call to 8 to take input
     	la $a0, buffer #Load buffer to accept input
-    	li $a1, 30
+    	li $a1, 31 #Create space to for string
+    	syscall
+    	
+    	li $v0, 4
+    	la $a0, buffer
     	syscall
     	
     	
