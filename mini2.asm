@@ -51,9 +51,11 @@ main:
 	la $a0, shiftint # Load str to be converted to integer
 	li $t1, 0 # Initialize int to 0
 	li $t3, 10 # Load newline for comparison
+	li $t4, 45 # Load negative symbol
 	str_to_int:
 		lb $t2, 0($a0) # Load current char
 		beq $t2, $t3, end # Leave if newline byte
+		beq $t2, $t4, interror
 		sub $t2, $t2, 48 # Convert from ASCII to int
 		mul $t1, $t1, 10 # Multiply current int by 10 to adjust for place
 		add $t1, $t1, $t2 # Add current digit
